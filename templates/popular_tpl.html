@@ -1,0 +1,21 @@
+<h2 class="sidebar-title">Popular</h2>
+<div class="grid">
+    {% for post in blocks %}
+<div class="portfolio-item popular">
+    {% if post.photo %}
+    <img src="{{ post.photo.url }}" alt="">
+    {% else %}
+    <img src="https://avatars.mds.yandex.net/i?id=495b986e259a721cd9f53bbb0dc28670-5192219-images-thumbs&n=13" alt="">
+    {% endif %}
+    <div class="portfolio-text">
+        <h5><a href="{% url 'page' post.slug %}">{{ post.title }}</a></h5>
+        <p>{{ post.aftor }} <span>|</span>{{ post.created_at|date:"d.m.Y" }}</p>
+    </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+

@@ -1,0 +1,192 @@
+{% load static %}
+{% load site_bar %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Single page</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'responsive.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-10">
+                        {% include 'menu/header.html' %}
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="single-blog-area">
+            <div class="container">
+                <div class="row">
+                   <div class="col-md-12">
+                    <div class="border-top">
+                        <div class="col-md-8">
+                        <div class="blog-area">
+                            <div class="blog-area-part">
+                                <h2>{{ post.title }}</h2>
+                                <span>Category: <a href="{{ post.category.get_absolute_url }}">{{ post.category }}</a> </span>
+                                <br>
+                                {% if post.tag.exists %}
+                                <div>
+                                    Tags:
+                                    {% for t in post.tag.all %}
+                                    <a href="{{ t.get_absolute_url }}">{{ t.title }}</a>
+
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                <span> Views: {{ post.view }}</span>
+                                <div class="for-style">
+                                    {{ post.content|safe }}
+                                   </div>
+
+                            <div class="commententries">
+                                <h3>Comments</h3>
+
+                                <ul class="commentlist">
+                                    <li>
+                                        <article class="comment">
+                                            <header class="comment-author">
+                                                <img src="img/author-1.jpg" alt="">
+                                            </header>
+                                            <section class="comment-details">
+                                                <div class="author-name">
+                                                    <h5><a href="#">Selina Gomez</a></h5>
+                                                    <p>February 25 2017</p>
+                                                </div>
+                                                <div class="comment-body">
+                                                    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                                                </div>
+                                                <div class="reply">
+                                                    <p><span><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>12</span><span><a href="#"><i class="fa fa-reply" aria-hidden="true"></i></a>7</span></p>
+                                                </div>
+                                            </section>
+                                        </article>
+
+                                        <ul class="children">
+                                            <li>
+                                                <article class="comment">
+                                                    <header class="comment-author">
+                                                        <img src="img/author-2.jpg" alt="">
+                                                    </header>
+                                                    <section class="comment-details">
+                                                        <div class="author-name">
+                                                            <h5><a href="#">Khalid Hasan Zibon</a></h5>
+                                                            <p>February 25 2017</p>
+                                                        </div>
+                                                        <div class="comment-body">
+                                                            <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                                                        </div>
+                                                        <div class="reply">
+                                                            <p><span><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>12</span><span><a href="#"><i class="fa fa-reply" aria-hidden="true"></i></a>7</span></p>
+                                                        </div>
+                                                    </section>
+                                                </article>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                    <li>
+                                        <article class="comment">
+                                            <header class="comment-author">
+                                                <img src="img/author-3.jpg" alt="">
+                                            </header>
+                                            <section class="comment-details">
+                                                <div class="author-name">
+                                                    <h5><a href="#">Heath Ledger</a></h5>
+                                                    <p>February 25 2017</p>
+                                                </div>
+                                                <div class="comment-body">
+                                                    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
+                                                </div>
+                                                <div class="reply">
+                                                    <p><span><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>12</span><span><a href="#"><i class="fa fa-reply" aria-hidden="true"></i></a>7</span></p>
+                                                </div>
+                                            </section>
+                                        </article>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <form action="#" method="get">
+                                <div class="name">
+                                    <input type="text" name="" id="" placeholder="Name" class="name">
+                                </div>
+                                <div class="email">
+                                    <input type="email" name="" id="" placeholder="Email" class="email">
+                                </div>
+                                <div class="comment">
+                                    <input type="text" name="" id="" placeholder="Comment" class="comment">
+                                </div>
+                                <div class="post">
+                                    <input type="submit" value="Post">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="newsletter">
+                                <h2 class="sidebar-title">Search </h2>
+                                <form action="{% url 'search' %}" method="get">
+                                    <input type="text" name="s"  placeholder="Search">
+                                    <input type="submit" value="search">
+                                </form>
+                            </div>
+                            
+                            {% show_popular  %}
+
+                            {% show_tag %}
+                    
+                     </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer-bg">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    {% include 'menu/footer.html' %}
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="footer-icon">
+                                        <p><a href="#"><i class="fa fa-fa-telegram" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></p>
+                                    </div>
+                                </div>
+                            </div> .
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.js' %}"></script>
+    <script src="{% static 'js/active.js' %}"></script>
+</body>
+
+</html>
